@@ -156,4 +156,104 @@ Det kompletta programmet visas i följande listning:
 
 ## Skapa block
 
+Block skapas Minecraft med kommandot **setBlock(..)** Indata till kommandot är positionen in X, Y och Z samt blockets id. För att sätta ut ett stenblock anger man följande kommando:
+
+	pos = minecraft.player.getTilePos()
+
+	minecraft.setBlock(pos.x+3, pos.y, pos.z, STONE.id)
+
+Detta sätter ut ett block av typen STONE.id 3 block från spelaren i X-led och på samma höjd som spelaren. Vi kan nu skapa fler block genom att lägga till fler kommandon:
+
+	pos = minecraft.player.getTilePos()
+	
+	minecraft.setBlock(pos.x+3, pos.y, pos.z, STONE.id)
+	minecraft.setBlock(pos.x+3, pos.y+1, pos.z, COBBLESTONE.id)
+	minecraft.setBlock(pos.x+3, pos.y, pos.z+1, WOOD_PLANKS.id)
+	minecraft.setBlock(pos.x+3, pos.y+1, pos.z+1, GOLD_ORE.id)
+
+![](creating_blocks_1.png)
+
+Man kan använda bläddraren i editorn för att klistra in block i koden. Välj ett block i lista n och klicka sedan **Lägg till** enligt följande figur:
+
+![](blocks_in_editor.png)
+
+Det går att skapa många block på en gång genom att använda kommandot **setBlocks**. I detta kommando kan man ange start och slut position mellan vilka blocken skall placeras. I följande kommandon sätter vi ut lövblock från (X + 10, Y, Z + 10) - (X + 20, Y + 4, Z + 20):
+
+	pos = minecraft.player.getTilePos()
+	
+	minecraft.setBlocks(pos.x + 10, pos.y, pos.z + 10, pos.x + 20, pos.y + 4, pos.z + 20, LEAVES.id)
+
+![](creating_blocks_2.png)
+
+Det går också att sätta ut luftblock AIR.id och vatten block, WATER.id, på detta sätt. I följande exempel bygger vi ett akvarie genom att först skapa block av glas och sedan fylla den inre delen av detta block med vatten:
+
+	pos = minecraft.player.getTilePos()
+	
+	minecraft.setBlocks(pos.x - 20, pos.y, pos.z - 20, pos.x - 10, pos.y + 6, pos.z - 10, GLASS.id)
+	minecraft.setBlocks(pos.x - 19, pos.y + 1, pos.z -19, pos.x - 11, pos.y + 5, pos.z -11, WATER.id)
+
+![](creating_blocks_3.png)
+
+Att det är vatten kan vi se om vi slår i sönder ett av fönsterblocken:
+
+![](spilling_water.png)
+
+----------
+### Övning 3
+
+Prova att skapa ett hus av sten eller något annat material och sedan gröpa ur det genom att skapa luftblock inuti.
+
+----------
+
+## Använda sköldpaddsgrafik (turtle) i Minecraft
+
+För att göra det lättare att skapa och ta bort block kan man använda en s.k. sköldpadda med en 3D penna för att skapa block eller ta bort block. Tunnlar i Minecraft kan vara jobbiga att göra för hand. Med hjälp av sköldpaddan kan vi snabbt och enkelt borra hål i vår värld precis som när man skapar riktiga tunnlar. Följande exempel visar hur vi gräver en 5 block bred tunnnel ner i marken och sedan upp igen:
+
+	from mc import *
+	from mcturtle import *
+	
+	minecraft = Minecraft()
+	
+	turtle = Turtle()
+	
+	turtle.pendelay(0)         # Anger hur om uppritningen skall ske långsamt eller snabbt 
+	material = AIR             # Variabel för materialet som skall användas
+	turtle.penwidth(5)         # Tjocklek på "pennan"
+	turtle.penblock(material)  # Sätt pennans material
+	turtle.pendown()           # Börja gräva
+	turtle.down(45)            # 45 grader nedåt
+	turtle.go(20)              # 20 block framåt
+	turtle.up(45)              # 45 grader uppåt
+	turtle.go(20)              # 20 block framåt
+	turtle.up(45)              # upp 45 grader
+	turtle.go(20)              # 20 block framåt
+	turtle.penup()             # Avsluta ritandet
+
+Om programmet körs skapas nu en tunnel ner i marken:
+
+![](turtle_1.png)
+
+Påväg ner i tunneln.
+
+![](turtle_2.png)
+
+Nere i tunneln. Lamporna är tillagda i efterhand.
+
+![](turtle_3.png)
+
+Påväg upp.
+
+![](turtle_4.png)
+
+
+
+
+
+
+
+
+
+ 
+
+
 
