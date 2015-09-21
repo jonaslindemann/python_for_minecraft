@@ -245,6 +245,35 @@ Påväg upp.
 
 ![](turtle_4.png)
 
+I det tidigare exemplet använde vi tomma block, AIR.id, för att skapa tunnlar. Vi kan också skapa strukturer med sköldpaddan. I följande exempel skapar vi en skulptur av GOLD_BLOCK.id.
+
+	from mc import *
+	from mcturtle import *
+	
+	minecraft = Minecraft()
+	
+	turtle = Turtle()
+	
+	turtle.pendelay(0)
+	material = GOLD_BLOCK.id
+	turtle.penwidth(2)
+	turtle.penblock(material)
+	turtle.pendown()
+	turtle.up(90)
+	turtle.go(20)
+	turtle.down(90)
+	turtle.go(20)sw
+	turtle.left(90)
+	turtle.go(20)
+	turtle.up(90)
+	turtle.go(20)
+	turtle.penup()
+
+Kör vi detta program får vi följande vackra struktur:
+
+![](turtle_5.png)
+
+
 
 
 
