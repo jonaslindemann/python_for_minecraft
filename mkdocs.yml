@@ -1,1 +1,5 @@
 site_name: Python och Minecraft
+pages:
+- Hem: index.md
+- Avsnitt 1: chapter1.md
+theme: readthedocs

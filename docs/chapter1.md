@@ -271,16 +271,96 @@ Kör vi detta program får vi följande vackra struktur:
 
 ![](turtle_5.png)
 
+## Att göra saker ett visst antal gånger (for-loopar)
+
+Om man i Python vill upprepa något bara ett visst antal gånger kan vi använda en for-loop. Följande exempel skriver ut texten "Det är kul med Minecraft." 10 ggr i chatfönstret:
+
+	# -*- coding: utf-8 -*-
+	
+	from mc import *
+	
+	minecraft = Minecraft() 
+	
+	for i in range(10):
+	    minecraft.postToChat("Det är kul med Minecraft.")
+
+Den första raden i exemplet säger till Python att vi vill kunna använda svenska tecken i utskriften.
+
+![](for_loop1.png)
+
+En for-loop kan vi också använda för att sätta ut flera block:
+
+	from mc import *
+	
+	minecraft = Minecraft() 
+	
+	pos = minecraft.player.getTilePos()
+	
+	for i in range(10):
+	    minecraft.setBlock(pos.x, pos.y, pos.z + i, STONE.id)
+
+![](for_loop2.png)
+
+i är en variabel som innehåller ett värde som kan användas att ändra positionen på blocken i loopen. I exemplet kommer i att gå från 0 till 9. Alltså kommer programmet att sätta ut block från spelarens z-koordinat till spelarens z-koordinat + 9 block.
+
+----------
+### Övning 4
+
+Vad händer om man lägger till i för spelarens x-koordinat samtidigt?
+
+	for i in range(10):
+	    minecraft.setBlock(pos.x, pos.y, pos.z + i, STONE.id)
+
+Prova också att lägga till i för spelarens y-koordinat.
+
+----------
+
+## flera for-loopar samtidigt
+
+Vill man placera ut block i flera rader måste man använda 2 st for-loopar på följande sätt:
+
+	from mc import *
+	
+	minecraft = Minecraft() 
+	
+	pos = minecraft.player.getTilePos()
+	
+	for i in range(10):
+	    for j in range(20):
+			
+	        minecraft.setBlock(pos.x + i, pos.y, pos.z + j, WOOD_PLANKS.id)
+
+![](for_loop3.png)
+
+----------
+### Övning 5
+
+Skriv ut variablerna i och j i chat-fönstret för att se vad som händer i koden.
+
+	for i in range(10):
+	    for j in range(20):
+	        minecraft.postToChat("i = "+str(i)+", j = "+str(j))
+	        minecraft.setBlock(pos.x + i, pos.y, pos.z + j, WOOD_PLANKS.id)
+
+Funktionen str(i) omvandlar värdet i variabeln i till en text, så att denna kan skrivas ut i chat-fönstret.
+
+----------
+### Övning 6
+
+Vad gör denna kod?
+
+	for i in range(10):
+	    for j in range(20):
+	        for k in range(30):
+	            minecraft.postToChat("i = "+str(i)+", j = "+str(j))
+	            minecraft.setBlock(pos.x + i, pos.y + k, pos.z + j, BRICK_BLOCK.id)
+
+![](for_loop4.png)
+
+----------
 
 
 
-
-
-
-
-
-
- 
-
+	
 
 

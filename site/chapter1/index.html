@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Avsnitt 1 - Python och Minecraft</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Avsnitt 1";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Python och Minecraft</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Hem</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Avsnitt 1</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#koda-i-minecraft">Koda i Minecraft</a></li>
+                
+                    <li><a class="toctree-l4" href="#vad-ar-programmering">Vad är programmering</a></li>
+                
+                    <li><a class="toctree-l4" href="#anpassa-minecraft">Anpassa Minecraft</a></li>
+                
+                    <li><a class="toctree-l4" href="#mitt-forsta-minecraft-program">Mitt första Minecraft program</a></li>
+                
+                    <li><a class="toctree-l4" href="#var-ar-jag-nagonstans">Var är jag någonstans?</a></li>
+                
+                    <li><a class="toctree-l4" href="#enkel-upprepning">Enkel upprepning</a></li>
+                
+                    <li><a class="toctree-l4" href="#skapa-block">Skapa block</a></li>
+                
+                    <li><a class="toctree-l4" href="#anvanda-skoldpaddsgrafik-turtle-i-minecraft">Använda sköldpaddsgrafik (turtle) i Minecraft</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Python och Minecraft</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Avsnitt 1</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="koda-i-minecraft">Koda i Minecraft</h1>
+<h2 id="vad-ar-programmering">Vad är programmering</h2>
+<p>En dator är uppbyggd kring ett antal delar som samarbetar för att du ska kunna använda program, spela spel och titta på bilder. Den viktigaste delen är processorn eller central processing unit (CPU). Processorn är expert på att utföra instruktioner, som t ex beräkna summan av 2+2, fyll minnet med text eller rita linjer på skärmen. Den andra viktiga delen i datorn är minnet. Minnet används för att lagra de instruktioner som ska utföras av processorn samt information som används för att visa text, grafik och video på skärmen. Ett antal av dessa instruktioner som tillsammans utför en uppgift kallar man ett program eller en applikation. </p>
+<p>De instruktioner som processorn utför kallas för maskininstruktioner och är mycket komplicerade att skriva. För att göra det enklare använder man istället någon form av programmeringsspråk, som använder instruktioner som är enklare för oss att skriva och förstå. Dessa instruktioner översätts med hjälp av ett speciellt program som kallas kompilator eller översättare till maskininstruktioner.</p>
+<p>Instruktioner skrivna i ett programmeringsspråk kallas tillsammans för programkod eller källkod. Programkoden skrivs ofta i en texteditor eller en speciell utvecklingsmiljö som kopplar ihop en texteditor med en kompilator.</p>
+<p>För att få datorn att göra något använder vi oss av något som kallas funktioner eller kommandon. Dessa talar om för datorn vad vi vill göra. Ett typiskt kommando eller funktion i Python består av 2 delar, funktionsnamnet och indata till funktionen (...). Följande exempel visar hur vi kan skicka ett meddelande till chatt-fönstret i Minecraft.</p>
+<pre><code>minecraft.postToChat("Hejsan Minecraft!")
+</code></pre>
+<p><strong>minecraft.postToChat</strong> är funktionsnamnet, <strong>("Hejsan Minecraft!")</strong> är indata till kommandot. </p>
+<p>Genom att sätta ihop flera instruktioner talar man om för datorn hur den ska utföra en uppgift på samma sätt som instruktionerna i recepten i kokboken. I nästa exempel lägger vill 2 kommandon till. Ett kommando, <strong>sleep(5)</strong>, anger att programmet ska vänta i 5 sekunder och ett kommando som skriver ut "Hej igen!" i chatt-fönstret:</p>
+<pre><code>minecraft.postToChat("Hejsan Minecraft!")
+sleep(5)
+minecraft.postToChat("Hej igen!")
+</code></pre>
+<p>Kör man programmet igen kommer följande upp i Minecraft:</p>
+<p><img alt="" src="../a_first_example.png" /></p>
+<h2 id="anpassa-minecraft">Anpassa Minecraft</h2>
+<p>För att det ska bli lättare att programmera med Minecraft kan det vara bra att stänga av funktionen i Minecraft som pausar programmet när man byter program i Windows. Detta görs genom att trycka på <strong>F3 + P</strong>. När detta är gjort tryck en kort gång på <strong>F3</strong> för att ta bort informationstexten. Tryck <strong>F3 + P</strong> igen för att återställa Minecraft inställningen igen.</p>
+<p>Många egenskaper i Minecraft går att styra ifrån chattfönstret. Detta fönster öppnas genom att trycka på T. Några bra kommandon man kan skriva i detta är:</p>
+<ul>
+<li><strong>/time set day</strong> - Återställer tiden till morgon (10:00)</li>
+<li><strong>/weather clear</strong> - Fint väder </li>
+</ul>
+<h2 id="mitt-forsta-minecraft-program">Mitt första Minecraft program</h2>
+<p>Vi ska nu skapa vårt första Minecraft program i Python. Skapa en ny Python-fil i IDLE eller i Python för Minecraft Editorn. </p>
+<p>Det första vi måste göra i vårt program är att tala om för Python att vi behöver kommandon för att prata med Minecraft, samt kommandon för att kunna göra pauser i programkörningen. Skriv in följande rader i editorn. </p>
+<pre><code>from mc import *
+from time import *
+</code></pre>
+<p>I nästa steg skapar vi kopplingen till Minecraft. </p>
+<pre><code>minecraft = Minecraft()
+</code></pre>
+<p>Detta gör att vi får tillgång till Minecraft genom en objektet, minecraft. minecraft-objektet innehåller alla de kommandon som behövs för att styra Minecraft, t ex genom att lägga till följande kommandon:</p>
+<pre><code>minecraft.postToChat("Hejsan Minecraft!")
+sleep(5)
+minecraft.postToChat("Hej igen!")
+</code></pre>
+<p>Det kompletta programmet ser ut så här:</p>
+<pre><code>from mc import *
+from time import *
+
+minecraft = Minecraft()
+
+minecraft.postToChat("Hejsan Minecraft!")
+sleep(5)
+minecraft.postToChat("Hej igen!")
+</code></pre>
+<hr />
+<h3 id="ovning-1">Övning 1</h3>
+<p>Modifiera programmet så att det skriver ut fler meddelanden i chattfönstret. Vad händer om man ändrar siffran i sleep(..) kommandot?</p>
+<hr />
+<h2 id="var-ar-jag-nagonstans">Var är jag någonstans?</h2>
+<p>Om vi skall bygga och skapa saker i Minecraft kan det vara bra att veta var man är någonstans. I Minecraft bestäms detta av ett så kallat koordinatsystem med 3 axlar, X, Y och Z. Det går att se var man befinner sig i detta koordinatsystem genom att trycka på <strong>F3</strong>.  </p>
+<p><img alt="" src="../player_position.png" /></p>
+<p>XYZ: anger var spelaren befinner sig i världen. I bilden befinner sig spelare i position (X = -310, Y =  4, Z = 478). X och Z anger var spelaren befinner sig längs marken. Y anger på vilken höjd spelaren befinner sig.</p>
+<p>I programkoden kan man ta reda på spelarens position med följande kommando:</p>
+<pre><code>pos = minecraft.player.getTilePos()
+</code></pre>
+<p>Kommandot minecraft.player.getTilePos frågar Minecraft var spelaren befinner sig för tillfället. Vi får tillbaka en s.k. variabel, <strong>pos</strong> som innehåller spelarens position. </p>
+<blockquote>
+<p><strong>Variabler</strong> - I början av denna text pratade vi om hur datorn lagrar program och information i minnet. I program behöver vi också ofta lagra information, som t ex siffror, text och grafik i minnet för att kunna hämta tillbaka det när vi behöver det. I de tidigare exemplen har vi angett siffror direkt till funktionerna. Många gånger har vi också angett samma siffra många gånger. För att förenkla hanteringen av information i program använder man sig av variabler. Variabler kan liknas vid en låda i en byrålåda med en etikett på. I lådan kan vi lägga olika saker. Etiketten gör det lätt att hitta sakerna i lådan igen. I datorns värld anger en variabel en plats i minnet. Namnet på variabeln är etiketten som gör att vi kan hitta tillbaka till denna minnesplats igen.</p>
+</blockquote>
+<p><strong>pos</strong> innehåller spelarens X, Y och Z position i förhållande till den position man startade i världen. Vi kan skriva ut innehållet i dessa till chattfönstret med följande kommandon:</p>
+<pre><code>minecraft.postToChat(pos.x)
+minecraft.postToChat(pos.y)
+minecraft.postToChat(pos.z)
+</code></pre>
+<p>I Minecraft visas då </p>
+<p><img alt="" src="../player_position_chat.png" /></p>
+<p>i chattfönstret. 20 är vår position i x-led, 0 är positionen i y-led och 15 är vår position i z-led.</p>
+<p>Det kompletta programmet visas i följande listning:</p>
+<pre><code>from mc import *
+
+minecraft = Minecraft()
+
+pos = minecraft.player.getTilePos()
+
+minecraft.postToChat(pos.x)
+minecraft.postToChat(pos.y)
+minecraft.postToChat(pos.z)
+</code></pre>
+<hr />
+<h3 id="ovning-2">Övning 2</h3>
+<p>Prova att gå till olika ställen i Minecraft för att se hur det påverkar X, Y och Z värdena i <strong>pos</strong> variabeln.</p>
+<hr />
+<p>Vi kan skriva ut spelarens position på ett mer elegant sätt genom att ändra de tre tidigare kommandona till ett enda kommando:</p>
+<pre><code>minecraft.postToChat("x = " + str(pos.x) + ", y = " + str(pos.y) + ", z = " + str(pos.z))
+</code></pre>
+<p>I det ovanstående kommadot använder vi + för att slå ihop flera texter. str(...) översätter siffror till text.</p>
+<h2 id="enkel-upprepning">Enkel upprepning</h2>
+<p>Många gånger när man skriver program måste man upprepa kommandon många gånger. För att göra det enklare kan vi instruera datorn att hela tiden upprepa vissa kommandon. Detta kallas ofta för att man skapar loopar. Vi skall nu modifiera vårt program att med jämna mellanrum skriva ut spelarens position i chattfönstret. I exemplet skall vi använda en s.k. while-sats. Denna upprepar kommandon tills dess att ett visst villkor inte är uppfyllt längre. Vi skriver in följande:</p>
+<pre><code>while True:
+    sleep(1)
+    pos = minecraft.player.getTilePos()
+    minecraft.postToChat("x = %g, y = %g, z = %g" % (pos.x, pos.y, pos.z))
+</code></pre>
+<p>Kommandon som skall upprepas måste vara indragna i förhållande till while-satsen. While-satsen måste också avslutas med ett : för att indikera var de upprepade kommandona börjar. <strong>sleep(1)</strong> anger att programkörningen skall pausa i 1 sekund. Övriga kommandon tar reda på spelarens position och skriver ut denna i chattfönstret. Om allt fungerar visas följande i chattfönstret:</p>
+<p><img alt="" src="../while_loop.png" /></p>
+<p>Tänk på att detta program aldrig stannar, så att vi måste trycka på stopp-knappen i editorn eller Ctrl-C i IDLE.</p>
+<p>Det kompletta programmet visas i följande listning:</p>
+<pre><code>from mc import *
+from time import *
+
+minecraft = Minecraft()
+
+while True:
+    sleep(1)
+    pos = minecraft.player.getTilePos()
+    minecraft.postToChat("x = %g, y = %g, z = %g" % (pos.x, pos.y, pos.z))
+</code></pre>
+<h2 id="skapa-block">Skapa block</h2>
+<p>Block skapas Minecraft med kommandot <strong>setBlock(..)</strong> Indata till kommandot är positionen in X, Y och Z samt blockets id. För att sätta ut ett stenblock anger man följande kommando:</p>
+<pre><code>pos = minecraft.player.getTilePos()
+
+minecraft.setBlock(pos.x+3, pos.y, pos.z, STONE.id)
+</code></pre>
+<p>Detta sätter ut ett block av typen STONE.id 3 block från spelaren i X-led och på samma höjd som spelaren. Vi kan nu skapa fler block genom att lägga till fler kommandon:</p>
+<pre><code>pos = minecraft.player.getTilePos()
+
+minecraft.setBlock(pos.x+3, pos.y, pos.z, STONE.id)
+minecraft.setBlock(pos.x+3, pos.y+1, pos.z, COBBLESTONE.id)
+minecraft.setBlock(pos.x+3, pos.y, pos.z+1, WOOD_PLANKS.id)
+minecraft.setBlock(pos.x+3, pos.y+1, pos.z+1, GOLD_ORE.id)
+</code></pre>
+<p><img alt="" src="../creating_blocks_1.png" /></p>
+<p>Man kan använda bläddraren i editorn för att klistra in block i koden. Välj ett block i lista n och klicka sedan <strong>Lägg till</strong> enligt följande figur:</p>
+<p><img alt="" src="../blocks_in_editor.png" /></p>
+<p>Det går att skapa många block på en gång genom att använda kommandot <strong>setBlocks</strong>. I detta kommando kan man ange start och slut position mellan vilka blocken skall placeras. I följande kommandon sätter vi ut lövblock från (X + 10, Y, Z + 10) - (X + 20, Y + 4, Z + 20):</p>
+<pre><code>pos = minecraft.player.getTilePos()
+
+minecraft.setBlocks(pos.x + 10, pos.y, pos.z + 10, pos.x + 20, pos.y + 4, pos.z + 20, LEAVES.id)
+</code></pre>
+<p><img alt="" src="../creating_blocks_2.png" /></p>
+<p>Det går också att sätta ut luftblock AIR.id och vatten block, WATER.id, på detta sätt. I följande exempel bygger vi ett akvarie genom att först skapa block av glas och sedan fylla den inre delen av detta block med vatten:</p>
+<pre><code>pos = minecraft.player.getTilePos()
+
+minecraft.setBlocks(pos.x - 20, pos.y, pos.z - 20, pos.x - 10, pos.y + 6, pos.z - 10, GLASS.id)
+minecraft.setBlocks(pos.x - 19, pos.y + 1, pos.z -19, pos.x - 11, pos.y + 5, pos.z -11, WATER.id)
+</code></pre>
+<p><img alt="" src="../creating_blocks_3.png" /></p>
+<p>Att det är vatten kan vi se om vi slår i sönder ett av fönsterblocken:</p>
+<p><img alt="" src="../spilling_water.png" /></p>
+<hr />
+<h3 id="ovning-3">Övning 3</h3>
+<p>Prova att skapa ett hus av sten eller något annat material och sedan gröpa ur det genom att skapa luftblock inuti.</p>
+<hr />
+<h2 id="anvanda-skoldpaddsgrafik-turtle-i-minecraft">Använda sköldpaddsgrafik (turtle) i Minecraft</h2>
+<p>För att göra det lättare att skapa och ta bort block kan man använda en s.k. sköldpadda med en 3D penna för att skapa block eller ta bort block. Tunnlar i Minecraft kan vara jobbiga att göra för hand. Med hjälp av sköldpaddan kan vi snabbt och enkelt borra hål i vår värld precis som när man skapar riktiga tunnlar. Följande exempel visar hur vi gräver en 5 block bred tunnnel ner i marken och sedan upp igen:</p>
+<pre><code>from mc import *
+from mcturtle import *
+
+minecraft = Minecraft()
+
+turtle = Turtle()
+
+turtle.pendelay(0)         # Anger hur om uppritningen skall ske långsamt eller snabbt 
+material = AIR             # Variabel för materialet som skall användas
+turtle.penwidth(5)         # Tjocklek på "pennan"
+turtle.penblock(material)  # Sätt pennans material
+turtle.pendown()           # Börja gräva
+turtle.down(45)            # 45 grader nedåt
+turtle.go(20)              # 20 block framåt
+turtle.up(45)              # 45 grader uppåt
+turtle.go(20)              # 20 block framåt
+turtle.up(45)              # upp 45 grader
+turtle.go(20)              # 20 block framåt
+turtle.penup()             # Avsluta ritandet
+</code></pre>
+<p>Om programmet körs skapas nu en tunnel ner i marken:</p>
+<p><img alt="" src="../turtle_1.png" /></p>
+<p>Påväg ner i tunneln.</p>
+<p><img alt="" src="../turtle_2.png" /></p>
+<p>Nere i tunneln. Lamporna är tillagda i efterhand.</p>
+<p><img alt="" src="../turtle_3.png" /></p>
+<p>Påväg upp.</p>
+<p><img alt="" src="../turtle_4.png" /></p>
+<p>I det tidigare exemplet använde vi tomma block, AIR.id, för att skapa tunnlar. Vi kan också skapa strukturer med sköldpaddan. I följande exempel skapar vi en skulptur av GOLD_BLOCK.id.</p>
+<pre><code>from mc import *
+from mcturtle import *
+
+minecraft = Minecraft()
+
+turtle = Turtle()
+
+turtle.pendelay(0)
+material = GOLD_BLOCK.id
+turtle.penwidth(2)
+turtle.penblock(material)
+turtle.pendown()
+turtle.up(90)
+turtle.go(20)
+turtle.down(90)
+turtle.go(20)sw
+turtle.left(90)
+turtle.go(20)
+turtle.up(90)
+turtle.go(20)
+turtle.penup()
+</code></pre>
+<p>Kör vi detta program får vi följande vackra struktur:</p>
+<p><img alt="" src="../turtle_5.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href=".." class="btn btn-neutral" title="Hem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+
+</body>
+</html>
