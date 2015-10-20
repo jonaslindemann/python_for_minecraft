@@ -2,5 +2,5 @@ site_name: Python och Minecraft
 pages:
 - Hem: index.md
 - Avsnitt 1: chapter1.md
-- Avsnitt 2: blocks_cheat_sheet.md
+- Avsnitt 2: block_cheat_sheet.md
 theme: readthedocs
