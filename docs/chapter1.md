@@ -359,8 +359,124 @@ Vad gör denna kod?
 
 ----------
 
+Det går också att hoppa över steg när man kör en loop.
 
+----------
+### Övning 7
 
+Vad gör denna kod?
+
+	for i in range(0,10,2):
+	    for j in range(0,20,2):
+	        for k in range(0,30,2):
+	            minecraft.setBlock(pos.x + i, pos.y + k, pos.z + j, GLOWING_OBSIDIAN.id)
+    
+
+![](for_loop5.png)
+
+Vad händer om man ändrar siffran 2 i range till ett högre värde?
+
+## Att göra egna kommandon
+
+När man börjar skriva större program märker man snart att man skriver samma kod flera gånger. För att slippa detta kan man flytta denna kod till egna kommandon som anropas precis som de kommandon vi redan lärt oss.
+
+För att visa hur detta kan fungera skall vi nu göra en funktion som skapar ett litet hus med vissa mått och egenskaper.
+
+Indata till funktionen kommer att vara:
+
+- minecraft - objektet vi använder för att prata med Minecraft. Funktionen ser inte de variabler som vi använder i resten av programmet.
+- x, y, z - Koordinater som anger var huset skall börja.
+- b, h, d - Anger bredd, höjd och djup i block för huset
+- vaggBlock - Anger block som skall användas för väggen
+- golvbBlock - Anger block som skall användas för golvet
+- takBlock - Anger block som skall användas för husets tak
+
+Funktioner eller kommandon skapas med Python-kommandot **def**, följt av funktionens namn och därefter indata till funktionen. Vi definierar vår hus funktion längs upp i vårt program:
+
+	# -*- coding: utf-8 -*-
+
+	from mc import *
+
+	def hus(minecraft, x, y, z, b, h, d, vaggBlock, golvBlock, takBlock):
+	    minecraft.setBlocks(x, y, z, x + b, y, z + d, golvBlock)
+	    minecraft.setBlocks(x, y + 1, z, x + b, y + h, z + d, vaggBlock)
+	    minecraft.setBlocks(x + 1, y + 1, z + 1, x + b - 1, y + h, z + d - 1, AIR.id)
+	    minecraft.setBlocks(x, y + h + 1, z, x + b, y + h + 1, z + d, takBlock)
+
+Vi skapar sedan på vanligt sätt kopplingen till Minecraft och därefter spelarens position.
+
+	minecraft = Minecraft() 
 	
+	pos = minecraft.player.getTilePos()
+
+Nu har vi all information som behövs för att anropa vårt eget kommando eller funktion.
+	
+	hus(minecraft, pos.x + 5, pos.y, pos.z + 5, 15, 4, 10, BRICK_BLOCK.id, STONE_BRICK.id, STONE_SLAB.id)
+
+Kör vi vårt program nu skapas ett hus utan fönster:
+
+![](hus.png)
+
+----------
+### Övning 8
+
+Lägg till följande kod i funktionen, hus, för att skapa fönster på ena sidan av huset:
+
+    for xp in range(x+2, x+b, 2):
+        minecraft.setBlock(xp, y + h/2, z, GLASS_PANE.id)
+        minecraft.setBlock(xp, y + 1 + h/2, z, GLASS_PANE.id)
+
+Skapa på samma sätt fönster på motstående sida av huset (z+d). Skapa också fönster i z-led:
+
+	for zp in range( ... fyll i ... ):
+        minecraft.setBlock(??, ??, ??, GLASS_PANE.id)
+		...
+		
+----------
+
+![](hus2.png)
+
+När vi nu har vår hus-funktion är det jätteenkelt att skapa ett höghus. Vi kombinerar då en for-loop med anrop till vår funktion:
+
+	for i in range(10):
+	    hus(minecraft, pos.x + 5, pos.y + i*5, pos.z + 5, 15, 4, 10, BRICK_BLOCK.id, STONE_BRICK.id, STONE_SLAB.id)
+
+![](hus3.png)
+	
+----------
+### Övning 9
+
+Skriv en ny funktion, hoghus, med följande indata:
+
+- minecraft - objektet vi använder för att prata med Minecraft. Funktionen ser inte de variabler som vi använder i resten av programmet.
+- x, y, z - Koordinater som anger var huset skall börja.
+- b, h, d - Anger bredd, höjd och djup i block för huset
+- antalVaningar - Antal våningar
+- vaggBlock - Anger block som skall användas för väggen
+- golvbBlock - Anger block som skall användas för golvet
+- takBlock - Anger block som skall användas för husets tak
+
+Funktionen anropas sedan med:
+
+	hoghus(minecraft, pos.x + 5, pos.y, pos.z + 5, 15, 4, 10, 8, BRICK_BLOCK.id, STONE_BRICK.id, STONE_SLAB.id)
+
+8 är i detta fallet antalet våningar.
+
+----------
+### Övning 10
+
+Använd 2 for-loopar för att skapa en stad med 10 x 10 höghus. 
+
+Positionen för husen kan beräknas på följande sätt:
+
+Om i och j är variabler från for-looparna och husens mått är 10 respektive 20 blir koordinaterna som anges i funktionen:
+
+	... pos.x + 5 + i*20*2, pos.y, pos.z + 5 + j*10*2, ...
+
+dvs husen sätts ut med dubbla bredden och djupet mellan varandra.
+
+
+![](hus4.png)
+
 
 

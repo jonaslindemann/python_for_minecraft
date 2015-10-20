@@ -14,4 +14,5 @@ For full documentation visit [mkdocs.org](http://mkdocs.org).
     mkdocs.yml    # The configuration file.
     docs/
         index.md  # The documentation homepage.
-        tutorial.md
+        chapter1.md
+		block_cheat_sheet.md
