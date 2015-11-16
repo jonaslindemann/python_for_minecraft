@@ -478,5 +478,249 @@ dvs husen sätts ut med dubbla bredden och djupet mellan varandra.
 
 ![](hus4.png)
 
+## Slumptal - Kasta tärning med datorn
 
+För att spel inte skall vara så förutsägbara kan man låta dator kasta tärning och låta tärningens siffror bestämma vad och hur saker skall placeras.
+
+Slumptal i Python skapas med kommandot randint(...). Kommandot behöver 2 indata startvärde och slutvärde. Dessa anger mellan vilka värden slumptalet skall hamna. Följande kod visar hur man kan skapa slumptal mellan 1 och 6 dvs en vanlig tärning.
+
+	from mc import *
+	from time import *
+	
+	# Denna behövs för att få tillgång till slumptalskommandot.
+	from random import * 
+	
+	minecraft = Minecraft()
+	
+	pos = minecraft.player.getTilePos()
+	
+	minecraft.postToChat(str(randint(1,6)))
+
+Kör man programmet i Minecraft visas värden mellan 1 och 6 i chat-fönstret.
+
+![](random1.png)
+
+radint(...) kan också användas som indata till andra kommandon. Följande kod skapar 100 st sten block slumpmässigt run spelaren
+
+	from mc import *
+	from time import *
+	from random import *
+	
+	minecraft = Minecraft()
+	
+	pos = minecraft.player.getTilePos()
+	
+	for i in range(100):
+		x = randint(-20,20)
+		y = randint(1,40)
+		z = randint(-20,20)
+		minecraft.setBlock(pos.x + x, pos.y + y, pos.z + z, STONE)
+
+![](random1.png)
+
+----------
+### Övning 10
+
+Vad händer om man sätter ut vatten (WATER_FLOWING) eller sand block (SAND)?
+
+Prova att ändra antal block och start och slutvärden i randint-kommandona.
+
+----------
+
+## Samla block spel
+
+I detta avsnitt skall vi skriva ett spel där spelaren skall samla block på en bana. När 20 block är samlade slutar spelet och den totala tiden för att samla in blocken skrivs ut.
+
+Spelet kan delas upp i ett antal delar:
+
+ 1. Koppla oss mot Minecraft
+ 2. Skapa och rensa spelplan
+ 3. Sätt ut 20 st block slumpmässigt. Se till att det inte finns ett block på den plats man sätter ut blocket.
+ 4. Initiera variabler som behövs för spelet
+ 5. Starta spelloopen
+ 6. Skriv ut totaltiden
+ 
+### 1 - Koppla oss mot minecraft
+
+Vi startar med följande kod som ni redan sett i de tidigare exemplen. 
+
+	# -- coding: utf-8 --
+	
+	from mc import *
+	from time import *
+	from random import *
+	
+	minecraft = Minecraft()
+	
+	pos = minecraft.player.getTilePos()
+	
+Först raden gör att vi kan använda å, ä och ö i koden.
+ 
+### 2 - Skapa och rensa spelplan
+
+I detta steg skall vi skapa en spelplan runt spelaren 20 x 20 block centrerad runt spelaren. Spelplanen skall ha en kant runt om. Vi rensar tidigare block genom att sätta ut luft block (AIR). 
+
+### 3 - Sätt ut 20 block som skall samlas upp
+
+I detta steg använder vi randint för att sätta ut 20 st block på vår spelplan. För att vi skall vara säkra på att vi inte sätter ut block ovanpå varandra måste vi kontrollera om det redan finns ett block på samma ställe. Detta gör vi med en s.k. if-sats. Med en if-sats kan man kontrollera att ett villkor är uppfyllt. Om det är uppfyllt körs koden i dess block. Vår kod för att sätta ut block blir då:
+
+	for i in range(20):
+		x = randint(-10, 10) 
+		y = 0
+		z = randint(-10, 10) 
+		
+		# Kontrollera att det inte finns ett block på samma plats
+		
+		if minecraft.getBlock(pos.x + x, pos.y + y , pos.z + z) != GLOWSTONE_BLOCK.id:
+			minecraft.setBlock(pos.x + x, pos.y + y , pos.z + z, GLOWSTONE_BLOCK)
+			
+### 4 - Variabler
+
+För att spelet skall fungera behöver vi ett antal variabler för att hålla koll på tid, antal block som har samlats in och om spelet är slut. 
+
+	hitCount = 0
+	startTime = 0
+	endTime = 0
+	playing = True
+
+### 5 - Spelloop
+
+Själva spelet sker i en spelloop. Det är kod som hela tiden körs för att kontrollera vad som händer i spelet. Loopen i vårt spel börjar med:
+
+	while playing:
+		# Kod för vårt spel
+	
+Detta betyder att koden i loopen kommer att köra fram tills dess att variabeln playing sätts till False
+
+I nästa steg behöver vi be Minecraft kontrollera om spelaren har aktiverat ett block genom att slå på det med svärdet. Detta görs med kommandot:
+
+		blockHits = minecraft.events.pollBlockHits()
+		
+Om spelaren aktiverat några block kommer blockHits innehålla en lista över dessa block annars kommer den att vara 0. Vi testar detta och skapar en loop som går igenom alla träffar.
+
+	if blockHits:
+				
+		for blockHit in blockHits:
+			
+Första kontrollen vi måste göra är att se om det är rätt block som har träffats. Om det är rätt raderar vi blocket från Minecraft genom att sätta ut ett luftblock (AIR).
+
+			blockType = minecraft.getBlock(blockHit.pos.x, blockHit.pos.y, blockHit.pos.z)
+			
+			if blockType == GLOWSTONE_BLOCK.id:
+				
+				# Om det är ett glowstone block tar vi bort det 
+				
+				minecraft.setBlock(blockHit.pos.x, blockHit.pos.y, blockHit.pos.z, AIR)
+
+I nästa steg måste vi kontrollera om detta är det första blocket spelaren har aktiverat, isåfall lagrar vi start tiden i startTime. Vi räknar också upp antalet block som samlats upp.
+
+				if hitCount == 0:
+					startTime = time()
+					
+				hitCount = hitCount + 1
+
+Spelet avslutas när 20 block har samlats in. För att avsluta spelloopen sätter vi playing = False. Detta gör att while loopen inte kommer att fortsätta. Vi lagrar också sluttiden.
+
+				if hitCount == 20:
+					endTime = time()
+					playing = False
+
+Varje gång användaren aktiverat ett block, skriver vi totalt insamlade block.
+
+				minecraft.postToChat("Antal block samlade = "+str(hitCount))
+				
+När spelloopen avslutats skriver vi ut resultaten i chatfönstret.
+
+	totalTime = endTime - startTime
+	minecraft.postToChat("Total time = "+str(totalTime))
+	
+![](collect_game.png)
+
+-----
+### Övningar
+
+ * Prova att ändra storleken på banan
+ * Prov att sätta ut slumpmässiga hinder på banan
+ * Ändra material
+ * Avsluta spelet efter en viss tid. Räkna poäng för olika typer av block
+ 
+-----
+### Hela programmet
+
+	# -- coding: utf-8 --
+	
+	from mc import *
+	from time import *
+	from random import *
+	
+	minecraft = Minecraft()
+	
+	pos = minecraft.player.getTilePos()
+	
+	# Skapa spelplan
+	
+	minecraft.setBlocks(pos.x-11,pos.y,pos.z-11,pos.x+11,pos.y,pos.z+11,STONE)
+	minecraft.setBlocks(pos.x-10,pos.y,pos.z-10,pos.x+10,pos.y,pos.z+10,AIR)
+	minecraft.setBlocks(pos.x-11,pos.y-1,pos.z-11,pos.x+11,pos.y-1,pos.z+11,STONE)
+	
+	# Satt ut vi skall samla ihop
+	
+	for i in range(20):
+		x = randint(-10, 10) 
+		y = 0
+		z = randint(-10, 10) 
+		
+		# Kontrollera att det inte finns ett block på samma plats
+		
+		if minecraft.getBlock(pos.x + x, pos.y + y , pos.z + z) != GLOWSTONE_BLOCK.id:
+			minecraft.setBlock(pos.x + x, pos.y + y , pos.z + z, GLOWSTONE_BLOCK)
+		
+	# Variabler för poäng och tidtagning
+	
+	hitCount = 0
+	startTime = 0
+	endTime = 0
+	playing = True
+		
+	while playing:
+		
+		# Kontrollera vilka block som har träffats
+		
+		blockHits = minecraft.events.pollBlockHits()
+		
+		if blockHits:
+			
+			# Loopa över alla block som träffats
+			
+			for blockHit in blockHits:
+	
+				# Kontrollera vilka block som träffats
+							
+				blockType = minecraft.getBlock(blockHit.pos.x, blockHit.pos.y, blockHit.pos.z)
+				
+				if blockType == GLOWSTONE_BLOCK.id:
+					
+					# Om det är ett glowstone block tar vi bort det 
+					
+					minecraft.setBlock(blockHit.pos.x, blockHit.pos.y, blockHit.pos.z, AIR)
+					
+					# Spelet startar när man slår på första glowstone blocket.
+					
+					if hitCount == 0:
+						startTime = time()
+						
+					hitCount = hitCount + 1
+					
+					# När man har samlat 20 block är spelet slut och vi kontrollerar tiden igen.
+						
+					if hitCount == 20:
+						endTime = time()
+						playing = False
+						
+					# Skriv antal samlade block
+						
+					minecraft.postToChat("Antal block samlade = "+str(hitCount))
+	
+	totalTime = endTime - startTime
+	minecraft.postToChat("Total time = "+str(totalTime))
 
